@@ -1,8 +1,8 @@
 # Выполнение задания
 
 Размещено:
-Frontend - http://yii2aifrigate.wotskill/
-Backend  - http://yii2aifrigate.wotskill/admin/
+Frontend - http://yii2aifrigate.wotskill.ru/
+Backend  - http://yii2aifrigate.wotskill.ru/admin/
 
 Ход выполнения см. в README_GitHub.md
 
