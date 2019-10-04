@@ -23,13 +23,28 @@ class LoginForm extends Model
     {
         return [
             // username and password обязательные поля
-            [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
+            [['username', 'password'], 'required', 'message' => 'Пожалуйста, заполните поле'],
+            // rememberMe должно быть логическим значением
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }
+
+
+    /**
+     * Названия полей формы (label)
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+      return [
+        'username' => 'Логин*',
+        'password' => 'Пароль*',
+        'rememberMe' => 'Запомни меня',
+      ];
+    }
+
 
     /**
      * Подтверждает пароль.
@@ -48,6 +63,7 @@ class LoginForm extends Model
         }
     }
 
+
     /**
      * Вход пользователя с использованием предоставленного имени пользователя и пароля.
      *
@@ -61,6 +77,7 @@ class LoginForm extends Model
 
         return false;
     }
+
 
     /**
      * Finds user by [[username]]

@@ -41,7 +41,7 @@ AppAsset::register($this);
   $menuItems = [
     // ['label' => 'Home', 'url' => ['/site/index']],
     // ['label' => 'About', 'url' => ['/site/about']],
-    ['label' => 'Главная', 'url' => ['/site/contact']],
+    ['label' => 'Отправить сообщение', 'url' => ['/site/contact']],
   ];
   if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => 'Зарегистрироваться', 'url' => ['/site/signup']];
@@ -72,7 +72,7 @@ AppAsset::register($this);
     ]) ?>
     <?= Alert::widget() ?>
     <?= $content ?>
-    
+
   </div>
 </div>
 <footer class="footer">

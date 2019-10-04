@@ -22,20 +22,36 @@ class SignupForm extends Model
     {
         return [
             ['username', 'trim'],
-            ['username', 'required'],
+            ['username', 'required', 'message' => 'Пожалуйста, заполните поле'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Это имя пользователя уже занято.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 2, 'max' => 100],
 
             ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required', 'message' => 'Пожалуйста, заполните поле'],
             ['email', 'email'],
-            ['email', 'string', 'max' => 255],
+            ['email', 'string', 'max' => 100],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот адрес электронной почты уже занят.'],
 
-            ['password', 'required'],
+            ['password', 'required', 'message' => 'Пожалуйста, заполните поле'],
             ['password', 'string', 'min' => 6],
         ];
     }
+
+
+
+    /**
+     * Названия полей формы (label)
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+      return [
+        'username' => 'Логин*',
+        'email' => 'Email*',
+        'password' => 'Пароль*',
+      ];
+    }
+
 
     /**
      * Signs user up.
@@ -55,8 +71,8 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         return $user->save() && $this->sendEmail($user);
-
     }
+
 
     /**
      * Отправляет подтверждение по электронной почте пользователю
