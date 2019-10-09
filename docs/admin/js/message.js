@@ -15,6 +15,7 @@ jQuery(function($){
        *  всех элементов выбора "Статуса сообщения"
        */
       jQuery('#table1').find('select').each(function(i,elem) {
+        $(this).attr('data-value', $(this).val());
         $(this).attr('data-name', $(this).attr('name'));
         $(this).removeAttr('name');
       });

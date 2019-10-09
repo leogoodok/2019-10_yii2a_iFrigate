@@ -53,24 +53,46 @@ class MessageAction extends Model
 
 
   /**
+   * Метод получения статуса сообщений по ID строки таблицы
+   * Если задано значение статуса для проверки, то
+   * проверка не равенства статуса сообщения заданному
+   * @return null|bool|int
+   */
+  public function matchStatusMSG($id = null, $newStatus = null)
+  {
+    if (isset($id) && ($message = TabMessage::findOne(['id' => $id]))) {
+      if (isset($newStatus)) {
+        return ($message->status != $newStatus);
+      } else {
+        return (int)$message->status;
+      }
+    }
+    return;
+  }
+
+
+  /**
    * Метод обновления статуса сообщений
-   * @return bool
+   * @return null|bool
    */
   public function updateStatusMSG()
   {
     if (empty($this->status)) return;
     $result = true;
-    foreach ($this->status as $key => $value) {
-      $message = TabMessage::findOne(['id' => $key]);
-      $message->status = $value;
-      if ($value != 0) {
-        $message->updated_at = time();
-      } else {
-        $message->delete_at = time();
+    foreach ($this->status as $id => $newStatus) {
+      if ($message = TabMessage::findOne(['id' => $id])) {
+        if ($this->matchStatusMSG($id, $newStatus)) {
+          $message->status = $newStatus;
+          if ($newStatus != 0) {
+            $message->updated_at = time();
+          } else {
+            $message->delete_at = time();
+          }
+          if (!$message->save()) {
+            $result = false;
+          }
+        }
       }
-      if (!$message->save()) {
-        $result = false;
-      };
     }
     return $result;
   }
@@ -84,12 +106,13 @@ class MessageAction extends Model
   {
     if (empty($this->delete)) return;
     $result = true;
-    foreach ($this->delete as $key => $value) {
+    foreach ($this->delete as $id => $value) {
       if (!empty($value)) {
-        $message = TabMessage::findOne(['id' => $key]);
-        if (!$message->delete()) {
-          $result = false;
-        };
+        if ($message = TabMessage::findOne(['id' => $id])) {
+          if (!$message->delete()) {
+            $result = false;
+          };
+        }
       }
     }
     return $result;
