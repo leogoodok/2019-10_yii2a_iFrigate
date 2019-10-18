@@ -40,10 +40,10 @@ yii2aifrigate.wotskill
 
 6.2.1. Создание/редактирование в Контроллере, Поведения и Действий:
 
-      - "actionContact" редеринга Представления "\frontend\views\site\contact.php".
-      - "actionLogin" редеринга Представления "Войти" "\frontend\views\site\login.php".
-      - "actionLogout" Выхода из текущей авторизации пользователя.
-      - "actionSignup" редеринга Представления "Зарегистрироваться" "\frontend\views\site\signup.php".
+  - "actionContact" редеринга Представления "\frontend\views\site\contact.php".
+  - "actionLogin" редеринга Представления "Войти" "\frontend\views\site\login.php".
+  - "actionLogout" Выхода из текущей авторизации пользователя.
+  - "actionSignup" редеринга Представления "Зарегистрироваться" "\frontend\views\site\signup.php".
 
 6.3. Модели Отправки сообщения администратору "ContactForm" (по почте и запись БД) в файле "\frontend\models\ContactForm.php".
 
@@ -59,9 +59,9 @@ yii2aifrigate.wotskill
 
 7.2.1. Создание/редактирование в Контроллере, Поведения и Действий:
 
-      - "actionMessage" редеринга Представления "\backend\views\site\message.php".
-      - "actionLogin" редеринга Представления "Войти", "\backend\views\site\login.php".
-      - "actionLogout" Выхода из текущей авторизации пользователя.
+  - "actionMessage" редеринга Представления "\backend\views\site\message.php".
+  - "actionLogin" редеринга Представления "Войти", "\backend\views\site\login.php".
+  - "actionLogout" Выхода из текущей авторизации пользователя.
 
 7.3. Моделей.
 
